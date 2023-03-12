@@ -1,10 +1,10 @@
 # 2023 03 02
 
-R Language - Data Science Language
+* R Language - Data Science Language
 
-책 - 난생처음 R언어 & 데이터 분석
+* 책 - 난생처음 R언어 & 데이터 분석
 
-React - Java script 의 Library
+* React - Java script 의 Library
 
 
 
@@ -92,20 +92,31 @@ React - Java script 의 Library
 
 2. Source Controll 에서 Initialize Repository
 
+3. 초기화 된 폴더에서 파일이 생성되거나 파일 내용 변경시 GIT 이 추적 시작
 
+4. 파일 stage에 올린 이후, Commit Message 작성  
 * Git에 올라가는 Readme 파일은 대체적으로 대문자
 * Commit Message 제목 -> 50byte
 * 내용 길이는 상관 없다.
+5. 일부 파일 Commit
+* 변경 내용중 일부만 commit 후 push하는 경우, 케밥 메뉴 클릭하고 push 선택
 
+6. Remote 에 Repository 생성
+* Github에 아직 Repository가 없는 경우 안내창 발생
+* Add Remote 버튼 클릭 후 원하는 Repository 선택
+* Public 및 private 선택
 
+# GIT HUB 와 연동
 
-### Github로 push하기
-변경 내용중 일부만 commit 후 push하는 경우, 케밥 메뉴 클릭하고 push 선택
-Github에 아직 Repository가 없는 경우 안내창 발생
-Add Remote 버튼 클릭 후 원하는 Repository 선택
+1. VSCode의 status bar왼쪽의 구름 아이콘을 클릭
 
+2. GitHub로 push 이후 HOST PC 연동
 
+3. GitHub 로그인 -> Allow
 
+4. 브라우저에서 로그인 및 설정
+
+5. VS CODE 에서 URL OPEN
 
 
 
