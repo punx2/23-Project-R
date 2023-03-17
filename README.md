@@ -265,11 +265,11 @@
 
 개인 공부
 
-git add . -> 현재 경로에 stg
-git commit -m "message"-> 커밋
-git branch -> 전체 브랜치 확인
-git branch [aa] -> aa 브랜치 생성
-git checkout aa -> aa 브랜치로 스위칭
-git status -> git 상태 확인 어떤 브랜치인지 알려줌
-
-
+* git add . -> 현재 경로에 stg
+* git commit -m "message"-> 커밋
+* git branch -> 전체 브랜치 확인
+* git branch [aa] -> aa 브랜치 생성
+* git checkout aa -> aa 브랜치로 스위칭
+* git status -> git 상태 확인 어떤 브랜치인지 알려줌
+* git merge [aa] -> 현재 브랜치에 aa브랜치 합치기
+* git push -> 원격 레파지토리에 push
