@@ -266,7 +266,7 @@
 개인 공부
 
 git add . -> 현재 경로에 stg
-git commit -> 커밋
+git commit -m "message"-> 커밋
 git branch -> 전체 브랜치 확인
 git branch [aa] -> aa 브랜치 생성
 git checkout aa -> aa 브랜치로 스위칭
