@@ -80,3 +80,128 @@ b<- '월'
 c<- paste(a,b, sep ='')
 c<- paste(1:12, '월', sep='')
 c
+
+
+d<- c(1,4,3,7,8)
+2*d
+d-5
+3*d+4
+
+
+
+# 인덱스의 위치가 같은 것 끼리 연산
+x<-c(1,2,3,4)
+y<-c(5,6,7,8)
+
+x+y
+
+# 숫자 벡터와 문자 벡터 결합
+y<-c(5,6,7)
+y<-c("a","b","c","d")
+x+y
+
+m<- c(x,y)
+m<- c(y,x)
+m
+
+
+#숫자 벡터와 문자벡터를 결합하면 숫자값이 문자로 변환되어 결합됨
+#동일한 종류의 값들만 저장 가능함
+m<- c(x,y,100,"apple")
+m
+
+y<-c(5,6,7,8)
+m<- c(x,y)
+m
+
+#다양한 연산자
+sum(x)
+mean(x)
+
+#오름/내림차순 정렬
+sort(x, decreasing = T)
+
+# 비교 연산자
+d<- 1:9
+d >= 5
+d[d>5]
+
+# 벡터에 논리연산자 적용되면 벡터의 개수가 들어감
+# 5보다 큰 값의 개수를 출력
+sum(d>5)
+length(d)
+length(d>5)
+
+
+TRUE == 1
+
+#에스프레소 2000원
+x<-c(4,5,3)
+#아메리카노 2500원
+y<-c(63,68,70)
+#카페라떼 3000원
+z<-c(61,70,75)
+
+
+s.x <-x*2.0
+s.y <-y*2.5
+s.z <-z*3
+s.day <- s.x + s.y + s.z
+s.day
+
+names(s.day) <-c("Mon","Tue","Wed")
+
+s.day
+
+# 전체 매출 합
+sum(s.day)
+
+#팩터
+bt<- c('A','B','B','O','AB')
+bt.new <- factor(bt)
+
+# 팩터는 어떠한 종류들이 있는지 보여준다.
+bt
+bt.new
+
+bt[3]
+bt.new[5]
+
+#문자를 숫자로 표현 (bt.new 에서의 순서 기준)
+# A= 1 AB=2 B=3 O=4
+as.integer(bt.new)
+bt.new
+
+
+h.list <-c("balling","tennis","ski")
+person <- list(name="장우찬", age=31, student=TRUE, hobby=h.list)
+person
+
+# 매트릭스 만들기 로우는 행 개수, 컬럼은 열(변수) 개수
+z <- matrix(1:20, nrow=4, ncol=5, byrow = T)
+z
+
+
+
+# c바인드 r바인드 
+x<-1:4
+y<-5:8
+
+xy<- cbind(x,y)
+
+xy2 <- rbind(x,y)
+xy2
+
+xy3 <- rbind(xy2, x)
+xy3
+
+xy4 <- cbind(z,x)
+xy4
+
+
+# 2행의 값중에 1~3열 데이터 읽어주기 
+z
+z[2,1:3]
+z[1,c(1,2,4)]
+z[3,c(1,2,5)]
+z[1:2,]
