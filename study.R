@@ -364,3 +364,88 @@ write.csv(my.iris, 'my_iris2.csv')
 install.packages('xlsx')
 library(xlsx)
 
+
+
+### 2023.04.13
+
+### txt 파일 읽기
+data <- read.table("airquality.txt", header = TRUE, sep = "\t")
+
+data
+
+
+### 조건문
+job.type <- 'A'
+if(job.type=='B'){
+  bobus <- 200
+} else{
+    bonus <- 100
+}
+print(bonus)
+
+### if-else 문
+### ifelse(test, yes, no)
+### test: 조건을 나타내는 논리식
+### yes: 조건이 참(True)인 경우 반환할 값 또는 연산식
+### no: 조건이 거짓(False)인 경우 반환할 값 또는 연산식
+
+x <- c(3, 0, -2, 5, -1, 0)
+result <- ifelse(x > 0, "양수", ifelse(x == 0, "0", "음수"))
+result 
+
+# for 문
+for (i in 1:5)
+  print ('*')
+
+### print -> 주로 객체 출력, cat -> 문자열 출력시 사용
+
+### while 문
+
+sum <- 0
+i <- 1
+while(i<=100){
+  sum <- sum+1;
+  i <- i+1;
+}
+print(sum)
+
+## apply 함수
+## 매트릭스나 데이터프레임의 데이터를 차례로 꺼내어 평균이나 합계등을 구하는 작업을 수행할때 사용
+
+iris
+## 두번째 값 = 1 / 2 = 행/열 방향으로 함수 적용
+apply(iris[,1:4], 1, mean)
+
+
+### 사용자 함수 선언 및 매개변수에 기본값 설정
+mymax <- function(x,y=2){
+  num.max <- x
+  if(y>x){
+    num.max <- y
+  }
+  return(num.max)
+}
+mymax(10)
+mymax(10,15)
+
+
+### 정의한 사용자 함수 파일 불러오기
+source('mymax.R')
+mymax(1)
+
+### which 함수 = 조건에 맞는 데이터 위치 찾기
+score <-c(76,84,69,50,95,60,82,71,88,84)
+which(score==69)
+max(score)
+min(score)
+which.max(score)
+
+idx<- which(score==60)
+score[idx] <- 61
+score
+
+which(score>=80)
+idx<-which(score>=80)
+score.high<- score[idx]
+score.high
+
