@@ -27,7 +27,7 @@ x <- c(3, 0, -2, 5, -1, 0)
 result <- ifelse(x > 0, "양수", ifelse(x == 0, "0", "음수"))
 result 
 
-# for 문
+### for 문
 for (i in 1:5)
   print ('*')
 
@@ -43,11 +43,11 @@ while(i<=100){
 }
 print(sum)
 
-## apply 함수
-## 매트릭스나 데이터프레임의 데이터를 차례로 꺼내어 평균이나 합계등을 구하는 작업을 수행할때 사용
+### apply 함수
+### 매트릭스나 데이터프레임의 데이터를 차례로 꺼내어 평균이나 합계등을 구하는 작업을 수행할때 사용
 
 iris
-## 두번째 값 = 1 / 2 = 행/열 방향으로 함수 적용
+### 두번째 값 = 1 / 2 = 행/열 방향으로 함수 적용
 apply(iris[,1:4], 1, mean)
 
 
@@ -91,29 +91,29 @@ score.high
 }
 * 사용자 함수 정의후 파일 저장 및 source(파일명.R) 로 함수 불러오기 가능
 
-## 2023.04.06
+### 2023.04.06
 
 ### 데이터 프레임
 * 열과 행으로 구성된 2차원의 데이터 구조
 
 
-## 4개의 행을 생성, 그안에 값 넣기
+### 4개의 행을 생성, 그안에 값 넣기
 z<- matrix(c(90,87,76,98,88,94,500,27,96,74,75,76), nrow=4)
 
-## 행과 열에 이름 붙여주기
+### 행과 열에 이름 붙여주기
 rownames(z)<- c('john', 'tom','mark', 'jane')
 colnames(z)<- c('국어','영어','수학')
 
 z
 
-## 표로 보기
+### 표로 보기
 View(z)
 
 z['jane', '수학']
 z['mark',]
 
 
-## 데이터 프레임 만들기
+### 데이터 프레임 만들기
 city<-c('seoul', 'toyko', 'washington')
 rank<-c(1,2,3)
 city.info <- data.frame(city,rank)
@@ -128,16 +128,16 @@ iris[1:5,c(1,3)]
 nrow(iris)
 #행과 열 개수
 dim(iris)
-## 열이름 보이기 names 함수와 동일
+### 열이름 보이기 names 함수와 동일
 colnames(iris)
-## 데이터 셋의 앞부분 일부 보기
+### 데이터 셋의 앞부분 일부 보기
 head(iris)
-## 데이터셋의 뒷부분 일부 보기
+### 데이터셋의 뒷부분 일부 보기
 tail(iris)
 
 #합계와 평균 구하기
 #열 별 합계
-## -는 5번쨰 컬럼을 빼라
+### -는 5번쨰 컬럼을 빼라
 colSums(iris[,-5])
 colSums(iris[,-5])
 
@@ -148,10 +148,10 @@ rowSums(iris[,-5])
 #행별 평균
 rowMeans(iris[,-5])
 
-## 매트릭스와 데이터프레임에 함수 적용
+### 매트릭스와 데이터프레임에 함수 적용
 z<- matrix(1:20, nrow=4, ncol=5)
 z
-## 행 열 방향 전환
+### 행 열 방향 전환
 t(z)
 
 #조건에 맞는 행과 열 값 추출하기
@@ -161,7 +161,7 @@ IR.1
 
 IR.1[,c(2,4)]
 
-## 산술연산 적용
+### 산술연산 적용
 
 a<- matrix(1:20,4,5)
 b<- matrix(21:40,4,5)
@@ -176,19 +176,19 @@ a<- a*3
 b<-b-5
 b
 
-## 매트릭스와 데이터프레임 자료구조 확인하기
-## iris 데이터셋 자료구조 확인
+### 매트릭스와 데이터프레임 자료구조 확인하기
+### iris 데이터셋 자료구조 확인
 class(iris)
-## 메트릭스 데이터셋 선언 
+### 메트릭스 데이터셋 선언 
 state.x77
-## state.x77 데이터 셋의 자료구조 확인
+### state.x77 데이터 셋의 자료구조 확인
 class(state.x77)
-## 데이터셋이 맥트릭스인지 데이터프레임인지 확인
+### 데이터셋이 맥트릭스인지 데이터프레임인지 확인
 is.data.frame(iris)
 is.matrix(iris)
 is.data.frame(state.x77)
 
-## 매트릭스와 데이터프레임의 자료구조 변환하기
+### 매트릭스와 데이터프레임의 자료구조 변환하기
 
 is.matrix(state.x77)
 st <- data.frame(state.x77)
@@ -200,7 +200,7 @@ iris.m <- as.matrix(iris[,1:4])
 head(iris.m)
 class(iris.m)
 
-## 열 추출 방법 -> 다양한 방법이 있음
+### 열 추출 방법 -> 다양한 방법이 있음
 iris[,"Species"]
 iris[,5]
 iris["Species"]
@@ -221,7 +221,7 @@ cat('세금', tax)
 
 #데이터의 출력
 
-## print > 2차원 은 불가능 cat은 가능
+### print > 2차원 은 불가능 cat은 가능
 
 #현재 작업폴더
 getwd()
@@ -233,14 +233,14 @@ setwd('D:/Woochan/23-Project1-R/23-Project1-R')
 getwd()
 
 #csv 파일 읽기 및 쓰기
-## working directory 에 파일이 있어야함
+### working directory 에 파일이 있어야함
 air <- read.csv('airquality.csv', header=T)
 
 head(air)
 
 
 
-## csv 파일 생성
+### csv 파일 생성
 my.iris <- subset(iris, Species =='setosa')
 
 my.iris
@@ -250,7 +250,7 @@ head(my.iris)
 write.csv(my.iris, 'my_iris.csv', row.names=F)
 write.csv(my.iris, 'my_iris2.csv')
 
-## 엑셀 파일 읽기 쓰기
+### 엑셀 파일 읽기 쓰기
 install.packages('xlsx')
 library(xlsx)
 
