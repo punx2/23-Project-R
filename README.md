@@ -1,4 +1,156 @@
 # 장우찬
+## 2023.04.27
+
+### 2023-04-27 중간고사 이후 첫 수업, ch08 부터 시작
+favorite <- c('WINTER', 'SUMMER', 'SPRING', 'SUMMER', 'SUMMER',
+              'FALL', 'FALL', 'SUMMER', 'SPRING', 'SPRING')   # 자료 입력
+favorite                            # favorite의 내용 출력
+table(favorite)                     # 도수분포 계산
+
+
+### 막대그래프 표시하기(수직방향), 테이블 생성하기
+favorite<-c('winter','summer','spring','summer','summer','fall')
+ds <- table(favorite)
+ds
+barplot(ds,main='Favorite Season')
+
+### 막대그래프에 색상 넣기
+barplot(ds,main='Favorite Season', col='blue')
+
+### 색상 이름 검색하는 함수
+colors()
+
+### 막대그래프별 색상 표시
+barplot(ds,main='Favorite Season', col=c('yellow','blue','red','green'))
+
+# 막대그래프에 색인 넣기(x축과 y축)
+barplot(ds,main='Favorite Season', col=c('yellow','blue','red','green'), xlab = '계절', ylab = '빈도수')
+
+### 색상을 임의로 지정하는 함수
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수')
+
+### 막대그래프 표시하기(수평방향)
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수',horiz=TRUE)
+
+### 각 막대그래프의 막대 별 이름 넣기
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수', names=c('가을','봄','여름','겨울'))
+
+### 각 막대별 이름을 수직 방향으로 넣기
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수', names=c('가을','봄','여름','겨울'), las=2)
+
+### 각 막대별 이름을 수평 방향으로 넣기
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수', names=c('가을','봄','여름','겨울'), las=1)
+
+### x,y축 전부 바꾸기
+barplot(ds,main='Favorite Season', col=rainbow(4), xlab = '계절', ylab = '빈도수', names=c('가을','봄','여름','겨울'), las=3)
+
+
+### 데이터 입력
+age.A <-c(13709,10974,7979,5000,4250)
+age.B <-c(17540,29701,36209,33947,24487)
+age.C <-c(991,2195,5366,12980,19007)
+
+### 데이터 프레임 결합
+ds <-rbind(age.A, age.B, age.C)
+colnames(ds)<- c('1970','1990','2010','2030','2050')
+ds
+
+### 그래프 작성
+### x= topright : 범례 출력 기본위치 
+barplot(ds, main='인구추정', 
+        col=rainbow(3), 
+        beside=T, 
+        # legend.text=T,
+        legend.text=c('0~14세','15~64세','65세 이상'),
+        args.legend = list(x='topright', bty='n', inset=c(-0.25,0)))
+
+### 히스토그램
+
+head(cars)                    
+dist <- cars[,2]              # 자동차 제동거리
+dist
+hist(dist,                    # data
+     main='Histogram for 제동거리',   # 제목
+     xlab ='제동거리',        # x축 레이블              
+     ylab='빈도수',           # y축 레이블                     
+     border='blue',           # 막대 테두리색  
+     col='green',             # 막대 색
+     las=2,                   # x축 글씨 방향(0~3) 
+     breaks=5)                # 막대 개수 조절
+
+### 히스토그램은 막대그래프와 유사하나 막대사이 간격 유무의 차이가 있음
+
+result <- hist(dist,                    # data
+               main='Histogram for 제동거리',    # 제목
+               breaks=5)                # 막대 개수 조절
+result
+freq <- result$counts                   # 구간별 빈도수 저장
+names(freq) <- result$breaks[-1]        # 구간값을 이름으로 지정
+freq                                    # 구간별 빈도수 출력
+
+
+### 다중 그래프
+
+par(mfrow=c(2,2), mar=c(3,3,4,2))     # 화면 분할(2x2)               
+
+hist(iris$Sepal.Length,               # 그래프 1
+     main='Sepal.Length',
+     col='orange')             
+
+barplot(table(mtcars$cyl),            # 그래프 2
+        main='mtcars',
+        col=c('red','green','blue'))              
+
+barplot(table(mtcars$gear),           # 그래프 3
+        main='mtcars',
+        col=rainbow(3),               # 레인보우 팔레트 사용
+        horiz=TRUE)              
+
+pie(table(mtcars$cyl),                # 그래프 4
+    main='mtcars',
+    col=topo.colors(3),           # topo 팔레트 사용
+    radius=2)              
+
+par(mfrow=c(1,1), mar=c(5,4,4,2)+.1)  # 화면 분할 취소 
+
+
+### 원그래프
+favorite <- c('WINTER', 'SUMMER', 'SPRING', 'SUMMER', 'SUMMER',
+              'FALL', 'FALL', 'SUMMER', 'SPRING', 'SPRING')   # 자료 입력
+ds <- table(favorite)                                         # 도수분포 계산
+ds                
+pie(ds, main='선호 계절',                                     # 원그래프 작성
+    radius=1)                                   
+pie(ds, main='선호 계절',
+    col=c('brown','green','red','black'),    # 파이의 색 지정
+    radius=1 )                               # 파이의 크기 지정 
+
+install.packages('plotrix')
+
+### 3차원 원그래프 
+library(plotrix)
+pie3D(ds, main='선호 계절',
+      labels=names(ds),                              # 파이별 레이블 지정
+      labelcex=1.0,                                  # 레이블의 폰트 크기
+      explode=0.1,                                   # 파이 간 간격
+      radius=1.5,                                    # 파이의 크기 
+      col=c('brown','green','red','yellow'))         # 파이의 색 지정
+
+
+### 원그래프
+
+month = 1:12                             # 자료 입력
+late  = c(5,8,7,9,4,6,12,13,8,6,6,4)     # 자료 입력      
+plot(month,                              # x data
+     late,                               # y data
+     main='지각생 통계',                 # 제목 
+     type='l',                           # 그래프의 종류 선택(알파벳) 
+     lty=1,                              # 선의 종류(line type) 선택
+     lwd=1,                              # 선의 굵기 선택
+     xlab='Month',                       # x축 레이블
+     ylab='Late cnt'                     # y축 레이블
+)
+
 
 ## 2023.04.13
 
@@ -6,7 +158,6 @@
 data <- read.table("airquality.txt", header = TRUE, sep = "\t")
 
 data
-
 
 ### 조건문
 job.type <- 'A'
