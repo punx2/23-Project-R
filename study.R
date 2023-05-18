@@ -692,3 +692,107 @@ na_count
 rowSums(is.na(x))            # 행별 NA 개수  
 sum(rowSums(is.na(x))>0)     # NA가 포함된 행의 개수 
 sum(is.na(x))                # 데이터셋 전체에서 NA 개수
+
+
+head(x)
+x[!complete.cases(x),]              # NA가 포함된 행들을 나타냄
+y <- x[complete.cases(x),]          # NA가 포함된 행들을 제거
+head(y)                             # 새로운 데이터셋 y의 내용 확인
+
+
+
+# 숫자 벡터 정렬
+v1 <- c(1,7,6,8,4,2,3)
+v1 <- sort(v1)                  # 오름차순
+v1
+v2 <- sort(v1, decreasing=T)    # 내림차순 
+v2
+
+# 문자열 벡터 정렬
+name <- c('정대일','강재구','신현석','홍길동')
+sort(name)                      # 오름차순
+sort(name, decreasing=T)        # 내림차순 
+
+# 값의 인덱스 정렬
+name <- c('정대일','강재구','신현석','홍길동')
+order(name)                            # 오름차순
+order(name, decreasing=T)              # 내림차순
+
+idx <- order(name)
+name[idx]                              # 오름차순 정렬
+
+# 매트릭스와 데이터프레임의 정렬
+head(iris)
+order(iris$Sepal.Length)
+iris[order(iris$Sepal.Length),]                   # 오름차순으로 정렬
+iris[order(iris$Sepal.Length, decreasing=T),]     # 내림차순으로 정렬
+iris.new <- iris[order(iris$Sepal.Length),]       # 정렬된 데이터를 저장
+head(iris.new)
+iris[order(iris$Species, decreasing=T, iris$Petal.Length),]     # 정렬 기준이 2개
+
+x <- 1:100
+y <- sample(x, size=10, replace=FALSE)    # 비복원 추출
+y
+
+idx <- sample(1:nrow(iris), size=50, replace=F)
+iris.50 <- iris[idx,]      # 50개의 행 추출
+dim(iris.50)               # 행과 열의 개수 확인
+head(iris.50)
+
+
+sample(1:20, size=5)
+sample(1:20, size=5)
+sample(1:20, size=5)
+
+set.seed(100)
+sample(1:20, size=5)
+set.seed(100)
+sample(1:20, size=5)
+sample(1:20, size=5)
+
+
+
+combn(1:5,3)              # 1~5에서 3개를 뽑는 조합 
+
+x = c("red","green","blue","black","white")
+com <- combn(x,2)         # x의 원소를 2개씩 뽑는 조합 
+com
+
+for(i in 1:ncol(com)) {    # 조합을 출력
+  cat(com[,i], "\n")
+}
+
+
+agg <- aggregate(iris[,-5], by=list(iris$Species), 
+                 FUN=mean)
+agg
+
+
+
+## 나무지도
+
+install.packages("treemap")
+
+library(treemap)                     # treemap 패키지 불러오기
+data(GNI2014)                        # 데이터 불러오기 
+head(GNI2014)                        # 데이터 내용 보기 
+treemap(GNI2014,
+        index=c('continent','iso3'), # 계층 구조 설정(대륙-국가)
+        vSize='population',          # 타일의 크기
+        vColor='GNI',                # 타일의 컬러
+        type='value',                # 타일 컬러링 방법
+        title="World's GNI")         # 나무지도 제목  
+
+
+library(treemap)                            # treemap 패키지 불러오기
+st <- data.frame(state.x77)                 # 매트릭스를 데이터프레임으로 변환
+st <- data.frame(st, stname=rownames(st))   # 주의 이름 열 stname을 추가 
+
+treemap(st,
+        index=c('stname'),                   # 타일에 주 이름 표기
+        vSize='Area',                        # 타일의 크기
+        vColor='Income',                     # 타일의 컬러
+        type='value',                        # 타일 컬러링 방법
+        title='USA states area and income' ) # 나무그림의 제목
+
+

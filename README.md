@@ -1,4 +1,141 @@
 # 장우찬
+
+## 2023.05.18
+
+## 정렬
+ - 주어진 기준에 따라 데이터를 크기순으로 재배열하는 과정
+
+### 1. 벡터의 정렬
+ - sort 함수 : 값의 크기에 따라 값들을 정렬
+ - order 함수 : 값의 크기에 따라 값들의 인덱스를 정렬
+
+``` R
+v1 <- c(1,7,6,8,4,2,3)
+v1 <- sort(v1)                  # 오름차순
+v1
+v2 <- sort(v1, decreasing=T)    # 내림차순 
+v2
+```
+
+``` R
+name <- c('정대일','강재구','신현석','홍길동')
+sort(name)                      # 오름차순
+sort(name, decreasing=T)        # 내림차순 
+```
+
+``` R
+name <- c('정대일','강재구','신현석','홍길동')
+order(name)                            # 오름차순
+order(name, decreasing=T)              # 내림차순
+
+idx <- order(name)
+name[idx]                              # 오름차순 정렬
+```
+
+### 2. 매트릭스와 데이터프레임의 정렬
+ - 특정 열의 값들을 기준으로 행을 재배열 하는 방법
+
+
+``` R
+head(iris)
+order(iris$Sepal.Length)
+iris[order(iris$Sepal.Length),]                   # 오름차순으로 정렬
+iris[order(iris$Sepal.Length, decreasing=T),]     # 내림차순으로 정렬
+iris.new <- iris[order(iris$Sepal.Length),]       # 정렬된 데이터를 저장
+head(iris.new)
+iris[order(iris$Species, decreasing=T, iris$Petal.Length),]     # 정렬 기준이 2개
+```
+
+## 샘플링과 조합
+
+### 1. 샘플링
+ - 주어진 값들에서 임의의 개수만큼 값을 추출하는 작업
+   - 여러번 값을 추출할때, 
+      - 한번 뽑은 값은 제외한 뒤 새로운 값을 추출하는 방식 -> 비복원 추출
+      - 뽑았던 값을 다시 포함시켜 새로운 값을 추출하는 방식 -> 복원 추출
+   - 샘플링이 필요한 때,
+     - 데이터 셋이 너무 커서 분석에 시간이 많이 걸리는 경우, 일부의 데이터만 추출하여 대략의 결과를 미리 확인 
+
+``` R
+x <- 1:100
+y <- sample(x, size=10, replace=FALSE)    # 비복원 추출
+y
+```
+
+``` R
+idx <- sample(1:nrow(iris), size=50, replace=F) 
+# 인덱스를 1부터 총 행의 개수 추출하고 50개를 랜덤으로 비복원 추출
+iris.50 <- iris[idx,]      # idx 변수에 저장된 인덱스에 해당하는 50개의 행을 추출하여 iris.50 데이터프레임을 생성
+dim(iris.50)               # 행과 열의 개수 확인
+head(iris.50)
+```
+ - 임의 추출을 하되 재현 가능한 결과가 필요한 경우
+``` R
+sample(1:20, size=5)
+sample(1:20, size=5)
+sample(1:20, size=5)
+
+set.seed(100)
+sample(1:20, size=5)
+set.seed(100)
+sample(1:20, size=5)
+sample(1:20, size=5)
+```
+
+``` R
+combn(1:5,3)              # 1~5에서 3개를 뽑는 조합 
+
+x = c("red","green","blue","black","white")
+com <- combn(x,2)         # x의 원소를 2개씩 뽑는 조합 
+com
+
+for(i in 1:ncol(com)) {    # 조합을 출력
+  cat(com[,i], "\n")
+}
+```
+
+- 집계 : 데이터의 그룹에 대해서 합계나 평균을 계산하는 작업
+  - aggregate() 함수 사용
+
+``` R
+agg <- aggregate(iris[,-5], by=list(iris$Species), 
+                 FUN=mean)
+agg
+```
+
+## 고급 그래프
+ ### 1. 나무지도
+ - 사각 타일의 형태로 표현
+
+``` R
+install.packages("treemap")
+
+library(treemap)                     # treemap 패키지 불러오기
+data(GNI2014)                        # 데이터 불러오기 
+head(GNI2014)                        # 데이터 내용 보기 
+treemap(GNI2014,
+        index=c('continent','iso3'), # 계층 구조 설정(대륙-국가)
+        vSize='population',          # 타일의 크기
+        vColor='GNI',                # 타일의 컬러
+        type='value',                # 타일 컬러링 방법
+        title="World's GNI")         # 나무지도 제목  
+```
+
+``` R
+library(treemap)                            # treemap 패키지 불러오기
+st <- data.frame(state.x77)                 # 매트릭스를 데이터프레임으로 변환
+st <- data.frame(st, stname=rownames(st))   # 주의 이름 열 stname을 추가 
+
+treemap(st,
+        index=c('stname'),                   # 타일에 주 이름 표기
+        vSize='Area',                        # 타일의 크기
+        vColor='Income',                     # 타일의 컬러
+        type='value',                        # 타일 컬러링 방법
+        title='USA states area and income' ) # 나무그림의 제목
+
+```
+
+
 ## 2023.05.11
 
 ### 1. 두변수의 상관 관계
