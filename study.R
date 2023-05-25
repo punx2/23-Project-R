@@ -796,3 +796,42 @@ treemap(st,
         title='USA states area and income' ) # 나무그림의 제목
 
 
+install.packages('fmsb')
+library(fmsb) 
+
+# (1) 자료 준비 
+score <- c(80,60,95,85,40)
+max.score <- rep(100,5)          # 100을 5회 반복
+min.score <- rep(0,5)            # 0을 5회 반복
+ds <- rbind(max.score,min.score, score)
+ds <- data.frame(ds)             # 매트릭스를 데이터프레임으로 변환  
+colnames(ds) <- c('국어','영어','수학','물리','음악')
+ds
+
+# (2) 방사형 차트 
+radarchart(ds)
+
+
+# [코드 12-5]에 이어 실행 
+radarchart(ds,                           # 데이터프레임
+           pcol='dark green',            # 다각형 선의 색 
+           pfcol=rgb(0.2,0.5,0.5,0.5),   # 다각형 내부 색
+           plwd=3,                       # 다각형 선의 두께
+           cglcol='grey',                # 거미줄의 색
+           cglty=1,                      # 거미줄의 타입
+           cglwd=0.8,                    # 거미줄의 두께
+           axistype=1,                   # 축의 레이블 타입
+           seg=4,                        # 축의 눈금 분할                         
+           axislabcol='grey',            # 축의 레이블 색
+           caxislabels=seq(0,100,25)     # 축의 레이블 값
+)
+
+
+install.packages("wordcloud")
+library(wordcloud)
+
+word<- c("홍길동", "강감찬","이순신","유관순","을지문덕" )
+frequency <- c(653,123,456,789,102)
+
+wordcloud(word,frequency, colors=rainbow(length(word)))
+
